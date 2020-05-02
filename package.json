@@ -32,6 +32,11 @@
         "crystal.scry.path": {
           "type": "string",
           "description": "Absolute path to 'scry' executable binary."
+        },
+        "crystal.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable/Disable extension."
         }
       }
     }

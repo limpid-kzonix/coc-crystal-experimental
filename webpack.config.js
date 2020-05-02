@@ -30,11 +30,9 @@ module.exports = {
     filename: 'index.js',
     libraryTarget: "commonjs",
   },
-  plugins: [
-  ],
+  plugins: [],
   node: {
     __dirname: false,
     __filename: false
   }
 }
-

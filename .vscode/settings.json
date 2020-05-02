@@ -7,6 +7,15 @@
     "crystal-lang.hover": true,
     "prettier.disableLanguages": [
         "typescript",
-        "json"
-    ]
+        "json",
+        "ts"
+    ],
+    "javascript.format.insertSpaceAfterConstructor": true,
+    "javascript.implicitProjectConfig.checkJs": true,
+    "javascript.implicitProjectConfig.experimentalDecorators": true,
+    "editor.formatOnType": true,
+    "editor.defaultFormatter": "vscode.typescript-language-features",
+    "[typescript]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    }
 }
