@@ -1,0 +1,57 @@
+{
+  "name": "coc-crystal-experimental",
+  "version": "1.7.11",
+  "description": "Crystal language server extension for coc.nvim",
+  "main": "lib/index.js",
+  "publisher": "limpid-kzonix",
+  "keywords": [
+    "coc.nvim",
+    "crystal"
+  ],
+  "engines": {
+    "coc": "^0.0.72"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/limpid-kzonix/coc-crystal-experimental.git"
+  },
+  "scripts": {
+    "clean": "rimraf lib",
+    "build": "webpack",
+    "prepare": "npx npm-run-all clean build"
+  },
+  "activationEvents": [
+    "*"
+  ],
+  "contributes": {
+    "commands": [],
+    "configuration": {}
+  },
+  "author": "balyszyn@gmail.com",
+  "license": "MIT",
+  "devDependencies": {
+    "@chemzqm/tsconfig": "^0.0.3",
+    "@chemzqm/tslint-config": "^1.0.18",
+    "@types/colors": "^1.2.1",
+    "@types/debounce": "^1.2.0",
+    "@types/node": "^13.7.6",
+    "@types/uuid": "^7.0.0",
+    "@types/which": "^1.3.2",
+    "coc.nvim": "^0.0.75",
+    "colors": "^1.4.0",
+    "debounce": "^1.2.0",
+    "iconv-lite": "^0.5.1",
+    "request-light": "^0.2.5",
+    "rimraf": "^3.0.2",
+    "timeago.js": "^4.0.2",
+    "ts-loader": "^6.2.1",
+    "tslint": "^6.0.0",
+    "typescript": "^3.8.2",
+    "uuid": "^7.0.1",
+    "vscode-languageserver-types": "^3.14.0",
+    "webpack": "^4.41.6",
+    "webpack-cli": "^3.3.11",
+    "which": "^2.0.2"
+  },
+  "dependencies": {}
+}
