@@ -1,0 +1,12 @@
+{
+    "editor.formatOnSave": true,
+    "files.associations": {
+
+    },
+    "files.autoSave": "onWindowChange",
+    "crystal-lang.hover": true,
+    "prettier.disableLanguages": [
+        "typescript",
+        "json"
+    ]
+}

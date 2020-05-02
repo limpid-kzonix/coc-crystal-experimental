@@ -25,7 +25,16 @@
   ],
   "contributes": {
     "commands": [],
-    "configuration": {}
+    "configuration": {
+      "type": "object",
+      "title": "Crystal configuration object",
+      "properties": {
+        "crystal.scry.path": {
+          "type": "string",
+          "description": "Absolute path to 'scry' executable binary."
+        }
+      }
+    }
   },
   "author": "balyszyn@gmail.com",
   "license": "MIT",
