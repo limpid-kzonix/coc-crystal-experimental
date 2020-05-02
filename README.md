@@ -1,3 +1,3 @@
 # coc-crystal-experimental
 
-Crystal LS extension for coc.nvim.
+Crystal language server extension for coc.nvim.
