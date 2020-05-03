@@ -1,12 +1,14 @@
-import * as path from "path";
 import * as fs from "fs";
 
-import os = require('os');
-import { ExtensionContext, LanguageClient, LanguageClientOptions, services, workspace } from 'coc.nvim'
+import { DocumentSelector } from 'vscode-languageserver-protocol';
 
-export async function activate(context: ExtensionContext): Promise<void> {
+import { ExtensionContext, LanguageClient, LanguageClientOptions, workspace, Disposable } from 'coc.nvim'
 
-    await showStatusMessage("Loading extension for Crystal Language")
+const CRYSTAL_MODE: DocumentSelector = [{ language: "crystal", scheme: "file" }];
+
+export function activate(context: ExtensionContext): void {
+
+    showStatusMessage("Loading extension for Crystal Language")
 
     let { subscriptions, logger } = context
     // Holds the object of workspace configuration 
@@ -15,67 +17,55 @@ export async function activate(context: ExtensionContext): Promise<void> {
 
     const enable = config.enable;
     if (enable === false) {
-        await showStatusMessage("Crystal Language Server disabled.", false);
+        showStatusMessage("Crystal Language Server disabled.", false);
         logger.warn("Crystal Language Server disabled. Exit. ");
         return;
     }
-    if (config.scry == null) {
-        const scryExecutablePath = config.scry.path;
-        let arch: string = os.arch();
-        let platform: string = os.platform();
+    if (config.server != null) {
+        const scryExecutablePath = config.server;
 
         if (scryExecutablePath == null && typeof scryExecutablePath === "string") {
-            await showStatusMessage("Could't find configuration for 'scry' language server.", false);
+            showStatusMessage("Could't find configuration for 'scry' language server.", false);
             logger.error(`Could't find configuration for by key 'crystal.scry.path'.`);
             return;
         }
         if (fs.existsSync(scryExecutablePath) === false) {
-            await showStatusMessage("Could't find 'scry' executable file.", false);
-            logger.error(`The 'scry' executable file does not exit. "crystal.scry.path" - ${scryExecutablePath}`);
+            showStatusMessage("Could't find 'scry' executable file.", false);
+            logger.error(`The 'scry' executable file doeCrystal language server starteds not exit. "crystal.scry.path" - ${scryExecutablePath}`);
             return;
         }
 
-        const command: string = context.asAbsolutePath(path.join(scryExecutablePath, platform, arch, "scry"));
 
-        const selector = config.filetypes || [
-            { scheme: 'file', language: 'cr' },
-            { scheme: 'untitled', language: 'cr' }
-        ];
+        const command: string = scryExecutablePath;
+
+        showStatusMessage(`Generated 'scry' command - ${command}`);
 
         const serverOptions = { command: command, args: [] };
 
         const clientOptions: LanguageClientOptions = {
-            documentSelector: selector,
+            documentSelector: CRYSTAL_MODE,
             synchronize: {
-                configurationSection: ['crystal'],
-                fileEvents: workspace.createFileSystemWatcher('**/*.cr')
+                configurationSection: "crystal",
+                fileEvents: workspace.createFileSystemWatcher("**/*.cr")
             },
-            outputChannelName: 'crystal',
-            initializationOptions: {
-                embeddedLanguages: { crystal: true }
-            }
         };
 
         let client = new LanguageClient('crystal', 'Crystal language server', serverOptions, clientOptions)
-
+        let sub: Disposable = client.start()
         client.onReady().then(() => {
-            workspace.showMessage('Crystal language server started', 'more')
+            workspace.showMessage(`Crystal language server started`, 'more');
         }, e => {
             // tslint:disable-next-line:no-console
             workspace.showMessage(`Crystal language server start failed: ${e.message}`, 'error')
         })
 
-        subscriptions.push(services.registLanguageClient(client))
+        subscriptions.push(sub)
     }
 
 
 }
 
-async function showStatusMessage(text: string, isProgressStatus: boolean = true) {
-    let statusItem = workspace.createStatusBarItem(0, { progress: isProgressStatus })
-    statusItem.text = text;
-    statusItem.show();
-
-    workspace.showMessage('Crystal language server started', 'warning');
+function showStatusMessage(text: string, isProgressStatus: boolean = true) {
+    workspace.showMessage(text, 'warning');
 }
 

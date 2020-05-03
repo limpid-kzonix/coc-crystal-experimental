@@ -1,1 +1,2 @@
-export declare function activate(): void;
+import { ExtensionContext } from 'coc.nvim';
+export declare function activate(context: ExtensionContext): void;

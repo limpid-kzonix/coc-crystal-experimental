@@ -1,6 +1,6 @@
 {
   "name": "coc-crystal-experimental",
-  "version": "1.7.11",
+  "version": "0.0.1",
   "description": "Crystal language server extension for coc.nvim",
   "main": "lib/index.js",
   "publisher": "limpid-kzonix",
@@ -9,7 +9,7 @@
     "crystal"
   ],
   "engines": {
-    "coc": "^0.0.72"
+    "coc": "^0.0.78"
   },
   "repository": {
     "type": "git",
@@ -29,9 +29,25 @@
       "type": "object",
       "title": "Crystal configuration object",
       "properties": {
-        "crystal.scry.path": {
+        "crystal.server": {
           "type": "string",
           "description": "Absolute path to 'scry' executable binary."
+        },
+        "crystal.completion": {
+          "type": "boolean",
+          "default": true
+        },
+        "crystal.hover": {
+          "type": "boolean",
+          "default": true
+        },
+        "crystal.implementations": {
+          "type": "boolean",
+          "default": true
+        },
+        "crystal.logLevel": {
+          "type": "string",
+          "default": "debug"
         },
         "crystal.enabled": {
           "type": "boolean",
