@@ -70,7 +70,7 @@
     "coc.nvim": "0.0.79",
     "colors": "1.4.0",
     "debounce": "1.2.0",
-    "iconv-lite": "0.5.2",
+    "iconv-lite": "0.6.2",
     "request-light": "0.2.5",
     "rimraf": "3.0.2",
     "timeago.js": "4.0.2",
