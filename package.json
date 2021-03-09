@@ -69,7 +69,7 @@
     "@types/which": "2.0.0",
     "coc.nvim": "0.0.80",
     "colors": "1.4.0",
-    "debounce": "1.2.0",
+    "debounce": "1.2.1",
     "iconv-lite": "0.6.2",
     "request-light": "0.4.0",
     "rimraf": "3.0.2",
